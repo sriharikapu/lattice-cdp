@@ -6,15 +6,24 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "compile:sass": "node-sass  -w assets/sass -o assets/css/"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "acorn": "^6.1.0",
+    "chart.js": "^2.7.3",
     "ethereumjs-abi": "^0.6.6",
     "gridplus-sdk": "0.0.16-development",
     "next": "^8.0.1",
+    "node-sass": "^4.11.0",
     "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react-dom": "^16.8.2",
+    "react-transitions": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.8.0"
   }
 }
