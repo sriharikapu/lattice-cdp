@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ethereumjs-abi": "^0.6.6",
     "gridplus-sdk": "0.0.16-development",
     "next": "^8.0.1",
     "react": "^16.8.2",
