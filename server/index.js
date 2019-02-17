@@ -1,7 +1,9 @@
 const Client = require("gridplus-sdk");
 const crypto = require("crypto");
 const express = require("express");
-const abi = require("ethereumjs-abi");
+const cors = require("cors")
+
+const createCDP = require("./createCDP.js");
 
 const host = "199.227.138.222:8088";
 const serial = "gridplus-remote";
@@ -21,6 +23,8 @@ const eth = new Client.providers.Ethereum({
 clientConfig.providers = [eth];
 
 const client = new Client.Client(clientConfig);
+
+let address;
 
 client.initialize(err => {
   if (err) throw new Error(err);
@@ -45,6 +49,7 @@ client.initialize(err => {
         if (err) throw new Error(err);
         console.log("\n\n---> Got addresses: " + _addr + " <---");
         addr = _addr;
+        address = _addr
 
         client.getBalance("ETH", { address: addr }, (err, _balanceData) => {
             if (err) throw new Error(err);
@@ -55,3 +60,20 @@ client.initialize(err => {
     });
   });
 });
+
+const app = express();
+
+app.use(cors());
+
+app.get("/address", (req, res) => {
+  res.send(address);
+})
+
+app.post("/createcdp/:eth-:dai", (req, res) => {
+  const ethToLock = req.params.eth;
+  const daiToDraw = req.params.dai;
+
+  const tx = createCDP(client, ethToLock, daiToDraw);
+})
+
+app.listen(5000, () => console.log(`Example app listening on port ${5000}!`));

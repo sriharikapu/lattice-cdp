@@ -1,7 +1,18 @@
 import '../assets/css/app.css';
 import 'react-transitions/dist/animations.css';
+import axios from 'axios';
 
-function Home() {
+const Home = () => {
+
+    function getAddress() {
+        axios.get('http://localhost:5000/address')
+        .then(function (response) {
+            // console.log(response);
+            alert(response.data);
+        })
+        // return (<div>{response.data}</div>)
+    }
+
     return <div className="home">
         <div className="grid-container">
             <div className="grid-item">
@@ -20,7 +31,7 @@ function Home() {
                 <div className="bot-area">
                     <div className="account moveFromLeftFade delay200">
                         <div className="title">Account</div>
-                        <div className="hash">0x4385aDB3e6b88a6...</div>
+                        <div className="hash" onClick={() => getAddress()}>AddressHere</div>
                         <div className="ticker">DAI: <span className="amount">[ 0.0100 ]</span></div>
                         <div className="ticker">MKR: <span className="amount">[ 0.0000 ]</span></div>
                         <div className="ticker">ETH: <span className="amount">[ 0.0391 ]</span></div>
@@ -43,6 +54,8 @@ function Home() {
             </div>
         </div>
     </div>
+
 }
+
   
 export default Home

@@ -14,6 +14,7 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "acorn": "^6.1.0",
+    "axios": "^0.18.0",
     "chart.js": "^2.7.3",
     "ethereumjs-abi": "^0.6.6",
     "gridplus-sdk": "0.0.16-development",
